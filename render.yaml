@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: vales-epc
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: USUARIO
+        sync: false
+      - key: CONTRASENA
+        sync: false
