@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Vales EPC</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Sistema de Vales EPC</h1>
+      <nav>
+        <a href="/nuevo">Nuevo vale</a>
+        <a href="/panel">Panel</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="panel-header">
+        <h2>Panel de control</h2>
+        <div class="filters">
+          <button class="filter active" data-estado="">Todos</button>
+          <button class="filter" data-estado="pendiente">Pendientes</button>
+          <button class="filter" data-estado="autorizado">Autorizados</button>
+        </div>
+      </section>
+
+      <div id="mensaje" class="mensaje oculto" aria-live="polite"></div>
+
+      <section class="cards" id="lista-vales"></section>
+    </main>
+
+    <template id="vale-template">
+      <article class="vale-card">
+        <div class="vale-head">
+          <span class="chip estado"></span>
+          <span class="codigo"></span>
+        </div>
+        <h3 class="nombre"></h3>
+        <p class="obra"></p>
+        <p class="fecha"></p>
+        <ul class="items"></ul>
+        <div class="acciones">
+          <button class="btn btn-primary ver-vale">Ver</button>
+          <button class="btn btn-success autorizar">Autorizar</button>
+          <button class="btn btn-secondary ingresado">Ingresado</button>
+        </div>
+      </article>
+    </template>
+
+    <div id="modal" class="modal oculto" aria-modal="true" role="dialog">
+      <div class="modal-content">
+        <button class="close-modal" aria-label="Cerrar">×</button>
+        <div id="detalle-vale"></div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

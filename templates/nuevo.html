@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuevo Vale EPC</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Nuevo Vale</h1>
+      <nav>
+        <a href="/nuevo">Nuevo vale</a>
+        <a href="/panel">Panel</a>
+      </nav>
+    </header>
+
+    <main class="container form-container">
+      <form id="form-vale" class="vale-form">
+        <div class="grid two-cols">
+          <label>
+            Número de vale
+            <input type="text" name="n_vale" placeholder="Ej: 001" />
+          </label>
+          <label>
+            Fecha
+            <input type="date" name="fecha" />
+          </label>
+        </div>
+
+        <div class="grid two-cols">
+          <label>
+            Obra
+            <input type="text" name="obra" placeholder="Nombre de la obra" />
+          </label>
+          <label>
+            DNI / Legajo
+            <input type="text" name="dni_legajo" placeholder="DNI o legajo" />
+          </label>
+        </div>
+
+        <label>
+          Apellido y Nombre
+          <input type="text" name="apellido_nombre" required />
+        </label>
+
+        <label>
+          Observaciones
+          <textarea name="observaciones" rows="3" placeholder="Observaciones generales"></textarea>
+        </label>
+
+        <label>
+          Firma del solicitante (opcional)
+          <input type="text" name="firma_solicitante" placeholder="Nombre para firma" />
+        </label>
+
+        <h3>Ítems</h3>
+        <div id="items-container"></div>
+
+        <button type="button" id="agregar-item" class="btn btn-secondary">Agregar ítem</button>
+
+        <div class="acciones-form">
+          <button type="submit" class="btn btn-primary">Guardar vale</button>
+        </div>
+      </form>
+    </main>
+
+    <template id="item-template">
+      <div class="item-row">
+        <input type="text" name="codigo" placeholder="Código" />
+        <input type="text" name="descripcion" placeholder="Descripción" />
+        <input type="text" name="cantidad" placeholder="Cantidad" />
+        <input type="text" name="entregado" placeholder="Entregado" />
+        <button type="button" class="btn btn-danger remove-item">Quitar</button>
+      </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
